@@ -3,7 +3,10 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <ul>
-      <li :key="x.c" v-for="x in dataFromBackend">{{ x.c }}</li>
+      <li :key="joke.punchline" v-for="joke in jokes">
+        {{ joke.setup }}
+        {{ joke.punchline }}
+        </li>
     </ul>
     {{dataFromBackend}}
   </div>
@@ -16,7 +19,7 @@ export default {
   name: 'App',
   data() {
     return {
-      dataFromBackend: null
+      jokes: null
     };
   },
   components: {
@@ -31,7 +34,7 @@ export default {
         .then(response => response.json())
         .then(result => {
           console.log(result);
-          this.dataFromBackend = result;
+          this.jokes = result;
         })
     }
   }
